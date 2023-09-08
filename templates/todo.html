@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+    {% block body %}
+
+    <center>
+        <h3>My Todo App</h3>
+    </center>
+    <hr style="height: 2px; border: 2px solid black; background-color: black;">
+    <div class="input-section">
+        <h2>Add a New Todo</h2>
+        <form action="/" method="POST">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" class="input-field" placeholder="Enter title..." required>
+    
+            <label for="description">Description:</label>
+            <textarea id="description" name="desc" class="input-field" placeholder="Enter description..." rows="4" required></textarea>
+    
+            <button type="submit" class="submit-button">Add Todo</button>
+        </form>
+    </div>
+
+        {% if alltodo|length == 0 %}
+        <div style="border: 1px solid red;background-color:red; color:white">
+            No Record!!
+          </div>
+            {% else %}
+    <table>
+        <tr>
+            <th>Serial Number</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Time</th>
+            <th>Delete</th>
+            <th>Update</th>
+            <th>Status</th>
+        </tr>
+        {% for todo in alltodo %}
+        <tr>
+            <td class="serial-number">{{ loop.index }}</td>
+            <td class="example-value">{{ todo.title }}</td>
+            <td class="example-value">{{ todo.desc }}</td>
+            <td class="example-value">{{ todo.date_created }}</td>
+            <td><a href="/delete/{{ todo.s_no }}"><button class="delete_btn" type="button">Delete</button></td>
+            <td><a href="/update/{{ todo.s_no }}"><button class="update_btn" type="button">Update</button></a></td>
+            <td><form action="/complete/{{ todo.s_no }}" method="POST">
+                <input type="checkbox" name="completed" {% if todo.completed %}checked{% endif %}>
+                <button type="submit" class="delete_btn">Complete</button>
+            </form></td>
+
+        </tr>
+        {% endfor %}
+        {% endif %}
+        <!-- Add more rows with example values as needed -->
+    </table>
+    
+    {% endblock body %}

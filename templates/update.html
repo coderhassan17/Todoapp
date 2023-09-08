@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<center>
+    <h3>My Todo</h3>
+</center>
+<hr style="height: 2px; border: 2px solid black; background-color: black;">
+<div class="input-section">
+    <h2>Update Todo</h2>
+    <form action="/update/{{todo.s_no}}", method="POST">
+        <label for="title">Title:</label>
+        <input type="text" id="title" value="{{todo.title}}" name="title" class="input-field" required>
+
+        <label for="description">Description:</label>
+        <textarea id="desc" name="desc" value="" class="input-field"  rows="4" required>{{todo.desc}}
+        </textarea>
+
+        <button type="submit" class="submit-button">Update Todo</button>
+    </form>
+</div>
+
+    
+
+    
+{% endblock body %}
