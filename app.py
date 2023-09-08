@@ -56,7 +56,7 @@ def complete_task(s_no):
     todo.completed = not todo.completed  # Toggle completion status
     db.session.commit()
     return redirect("/")
-
+#hello 
 
 if __name__ == "__main__":
     app.app_context().push()
